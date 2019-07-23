@@ -1,0 +1,30 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "vue aplicacion",
+  "main": "index.js",
+  "scripts": {
+    "static": "static-server -p 3000 -z -i ./public/index.html --not-found ./public/index.html",
+    "watch": "webpack -w --mode development"
+  },
+  "author": "jesusmaster",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.1.0",
+    "static-server": "^2.2.1",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7"
+  }
+}
