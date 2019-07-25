@@ -1,10 +1,11 @@
 <template lang="html">
   <div>
-    <Loading-page v-if="loading"></Loading-page>
+    <Loading-page v-if="loading && !items.length"></Loading-page>
     <container v-if="items.length">
       <div class="content">
         <item v-for="item in items" v-bind="item"></item>
       </div>
+      <loading-after v-if="loading"></loading-after>
     </container>
   </div>
 </template>
@@ -31,10 +32,25 @@ export default {
       this.items = this.items.concat(posts.items);
       this.page = this.page + 1;
       this.loading = false;
+    },
+    handleScroll (){
+      console.log('scroled');
+
+      if(this.loading) return null;
+
+      const scrolled = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const fullHeight = document.body.clientHeight;
+      if( (scrolled + viewportHeight + 10) < fullHeight) return null;
+      this.load_posts();
     }
   },
   mounted () {
     this.load_posts();
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy(){
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>

@@ -16,7 +16,13 @@ const post = {
       method: 'get',
       url: `https://www.taringa.net/apiv7/feed/global?count=20&filter=article&after=23r3rg&sort=bigbang1d&page=${page}`,
     });
-  }
+  },
+  get_single: (id) => {
+    return connect({
+      method: 'get',
+      url: 'https://www.taringa.net/apiv7/story/'+id,
+    })
+  },
 }
 
 export default {
