@@ -7,6 +7,9 @@
           {{data.title}}
         </div>
         <div class="body" v-html="body"></div>
+        <div class="autor">
+          by <router-link :to="`/user/${data.owner.username}`">{{data.owner.username}}</router-link>
+        </div>
       </div>
     </container>
   </div>
@@ -27,18 +30,14 @@ export default {
     }
   },
   methods:{
-    convert () {
-
-    }
   },
   computed: {
     body (){
       if (this.loading === false){
-        console.log(this.data.content)
         const content = this.data.content.map( item => {
-          return item.type === "markdown"
-          ? converter.makeHtml(item.body)
-          : `<img src="${item.url}" style="margin: 10px 0px" />`
+          if (item.type === 'markdown') return converter.makeHtml(item.body);
+          if (item.type === 'html') return item.body;
+          return `<img src="${item.url}" style="margin: 10px 0px" />`;
         })
         return content.join(' ');
       }
@@ -70,5 +69,10 @@ export default {
   .body img{
     margin: 10px auto;
     display: block;
+  }
+  .autor{
+    border-top: 1px solid #cdcdcd;
+    padding-top: 10px;
+    margin-top: 10px;
   }
 </style>
