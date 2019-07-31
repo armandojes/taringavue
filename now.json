@@ -1,9 +1,10 @@
 {
   "name": "taringavue",
+  "alias": "taringavue",
   "version": 2,
   "builds": [
     { "src": "./public/*", "use": "@now/static" },
-    { "src": "./public/images/*", "use": "@now/static" }
+    { "src": "./public/images/*", "use": "@now/static" },
     { "src": "./public/images/icons/*", "use": "@now/static" }
   ],
   "routes": [
